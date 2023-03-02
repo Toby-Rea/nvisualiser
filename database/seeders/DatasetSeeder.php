@@ -17,7 +17,8 @@ class DatasetSeeder extends Seeder
 
         foreach ($data as $dataset) {
             $model = new Dataset([
-                'years' => $dataset[0],
+                'start_year' => explode('-', $dataset[0])[0],
+                'end_year' => explode('-', $dataset[0])[1],
                 'component' => $dataset[1],
                 'description' => $dataset[2],
                 'docs_url' => $dataset[3],

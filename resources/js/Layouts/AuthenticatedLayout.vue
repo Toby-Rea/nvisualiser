@@ -2,7 +2,7 @@
   <div class="w-screen h-full flex">
     <Sidebar/>
 
-    <div class="flex flex-col mx-auto my-12">
+    <div class="flex flex-col mx-auto my-8">
       <slot/>
     </div>
   </div>

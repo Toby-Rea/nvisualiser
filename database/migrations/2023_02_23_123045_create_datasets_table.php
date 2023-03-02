@@ -9,11 +9,13 @@ return new class extends Migration {
     {
         Schema::create('datasets', function (Blueprint $table) {
             $table->id();
-            $table->string('years');
+            $table->integer('start_year');
+            $table->integer('end_year');
             $table->string('component');
             $table->string('description');
             $table->string('docs_url');
             $table->string('data_url');
+            $table->boolean('downloaded')->default(false);
         });
     }
 
