@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dataset;
+use Illuminate\Support\Facades\Process;
 use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -37,13 +38,20 @@ class DatasetsController extends Controller
 
     // Ensure file isn't already downloaded
     if (file_exists($path)) {
-      return $file_name . " already downloaded";
+      return response($file_name . " already downloaded");
     }
 
     // Download the file from the URL and store
     $data = file_get_contents($dataset->data_url);
     file_put_contents($path, $data);
 
-    return $file_name . " downloaded successfully";
+    // Convert to CSV
+    Process::run("python3 " . storage_path("app/convert.py") . " " . $path);
+
+    // update table
+    $dataset->downloaded = true;
+    $dataset->save();
+
+    return response($file_name . " downloaded successfully");
   }
 }
