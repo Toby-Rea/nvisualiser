@@ -13,9 +13,8 @@ return new class extends Migration {
             $table->integer('end_year');
             $table->string('component');
             $table->string('description');
-            $table->string('docs_url');
-            $table->string('data_url');
-            $table->boolean('downloaded')->default(false);
+            $table->string('docs_url')->unique();
+            $table->string('data_url')->unique();
         });
     }
 

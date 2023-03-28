@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Dataset;
+use Illuminate\Database\QueryException;
 use Illuminate\Database\Seeder;
 
 class DatasetSeeder extends Seeder
@@ -24,7 +25,16 @@ class DatasetSeeder extends Seeder
                 'docs_url' => $dataset[3],
                 'data_url' => $dataset[4],
             ]);
-            $model->save();
+            try {
+                $model->save();
+            } catch (QueryException $e) {
+              // Ignore duplicate entries
+              if ($e->getCode() === '23000') {
+                continue;
+              } else {
+                throw $e;
+              }
+            }
         }
     }
 }
