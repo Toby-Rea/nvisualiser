@@ -20,6 +20,8 @@ watch(search, debounce((value) => {
     }
   )
 }, 150))
+
+let selectedIds = ref([])
 </script>
 
 <template>
@@ -33,7 +35,7 @@ watch(search, debounce((value) => {
       <table class="table-fixed text-sm font-light">
         <thead class="border-b w-full">
         <tr class="text-left text-neutral-600 [&>*]:px-4 [&>*]:py-2">
-          <th class="w-32">Years</th>
+          <th class="w-36">Years</th>
           <th class="w-40">Component</th>
           <th class="w-80">Description</th>
           <th class="w-72">Documentation URL</th>
@@ -43,7 +45,12 @@ watch(search, debounce((value) => {
         <tbody class="text-sm">
         <tr v-for="dataset in props.datasets.data"
             class="border-b transition-all hover:bg-gray-50 [&>*]:px-4 [&>*]:py-2">
-          <td>{{ dataset["start_year"] }}-{{ dataset["end_year"] }}</td>
+          <td>
+            <input type="checkbox"
+                   class="mr-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                   :value="dataset.id" v-model="selectedIds">
+            <label :for="dataset.id" class="w-full py-4 ml-2">{{ dataset["start_year"] }}-{{ dataset["end_year"] }}</label>
+          </td>
           <td>{{ dataset["component"] }}</td>
           <td>{{ dataset["description"] }}</td>
           <td>
@@ -63,7 +70,8 @@ watch(search, debounce((value) => {
       <!-- Pagination -->
       <div class="flex items-center justify-center gap-4 mt-6">
         <template v-for="(link, key) in props.datasets.links" :key="key">
-          <div v-if="link.url === null" class="px-4 py-2 text-sm border rounded cursor-default hidden" v-html="link.label"/>
+          <div v-if="link.url === null" class="px-4 py-2 text-sm border rounded cursor-default hidden"
+               v-html="link.label"/>
           <Link v-else
                 class="px-4 py-2 text-sm border rounded hover:bg-neutral-200"
                 :class="{ 'bg-neutral-100': link.active }" :href="link.url" v-html="link.label"/>
