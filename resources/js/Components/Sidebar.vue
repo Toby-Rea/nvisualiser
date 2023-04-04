@@ -15,7 +15,7 @@ const path = computed(() => usePage().url)
       <Link href="/datasets" class="py-2 border-b hover:border-b-rose-800 hover:scale-105 transition-all" :class="{'border-rose-800': path === '/datasets'}">Datasets</Link>
       <Link href="/visualisations" class="py-2 border-b hover:border-b-rose-800 hover:scale-105 transition-all" :class="{'border-rose-800': path === '/visualisations'}">Visualisations</Link>
     </nav>
-    <Link href="/profile" class="p-2 bg-neutral-50 text-sm hover:scale-105 transition-all">
+    <Link href="/profile" class="p-2 bg-neutral-100 text-sm hover:scale-105 hover:bg-neutral-200 rounded-md transition-all">
       <p class="font-semibold">{{ user.name }}</p>
       <p>{{ user.email }}</p>
     </Link>
