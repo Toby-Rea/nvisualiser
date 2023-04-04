@@ -1,4 +1,5 @@
 *
 !nhanes_datasets.csv
 !public/
+!datasets/
 !.gitignore
