@@ -21,8 +21,6 @@ Route::get('/', function () {
   return Inertia::render('Welcome', [
     'canLogin' => Route::has('login'),
     'canRegister' => Route::has('register'),
-    'laravelVersion' => Application::VERSION,
-    'phpVersion' => PHP_VERSION,
   ]);
 });
 
@@ -32,6 +30,11 @@ Route::get('/dashboard', function () {
 
 Route::get('/datasets', [DatasetsController::class, 'index'])->middleware(['auth', 'verified'])->name('datasets');
 Route::get('/datasets/{id}', [DatasetsController::class, 'download'])->whereNumber('id')->middleware(['auth', 'verified']);
+
+Route::get('/visualisations', function () {
+  return Inertia::render('Visualisations');
+})->middleware(['auth', 'verified'])->name('visualisations');
+
 
 Route::middleware('auth')->group(function () {
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
