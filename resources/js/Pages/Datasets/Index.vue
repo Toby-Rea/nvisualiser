@@ -1,27 +1,27 @@
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import {router, Head, Link} from '@inertiajs/vue3';
-import {ref, watch} from 'vue';
-import {debounce} from 'lodash';
+  import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+  import {router, Head, Link} from '@inertiajs/vue3';
+  import {ref, watch} from 'vue';
+  import {debounce} from 'lodash';
 
-const props = defineProps({
-  datasets: Object,
-  filters: Object,
-});
+  const props = defineProps({
+    datasets: Object,
+    filters: Object,
+  });
 
-let search = ref(props.filters.search)
-watch(search, debounce((value) => {
-  router.get(
-    '/datasets',
-    {search: value},
-    {
-      preserveState: true,
-      replace: true
-    }
-  )
-}, 150))
+  let search = ref(props.filters.search)
+  watch(search, debounce((value) => {
+    router.get(
+      '/datasets',
+      {search: value},
+      {
+        preserveState: true,
+        replace: true
+      }
+    )
+  }, 150))
 
-let selectedIds = ref([])
+  let selectedIds = ref([])
 </script>
 
 <template>
@@ -49,7 +49,9 @@ let selectedIds = ref([])
             <input type="checkbox"
                    class="mr-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
                    :value="dataset.id" v-model="selectedIds">
-            <label :for="dataset.id" class="w-full py-4 ml-2">{{ dataset["start_year"] }}-{{ dataset["end_year"] }}</label>
+            <label :for="dataset.id" class="w-full py-4 ml-2">
+              {{ dataset["start_year"] }}-{{dataset["end_year"]}}
+            </label>
           </td>
           <td>{{ dataset["component"] }}</td>
           <td>{{ dataset["description"] }}</td>
