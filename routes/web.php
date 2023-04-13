@@ -28,12 +28,13 @@ Route::get('/dashboard', function () {
   return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/datasets', [DatasetsController::class, 'index'])->middleware(['auth', 'verified'])->name('datasets');
-Route::get('/datasets/{id}', [DatasetsController::class, 'download'])->whereNumber('id')->middleware(['auth', 'verified']);
+Route::get('/datasets', [DatasetsController::class, 'index'])->middleware(['auth', 'verified'])->name('datasets.index');
+
+Route::get('/datasets/{dataset}', [DatasetsController::class, 'show'])->middleware(['auth', 'verified'])->name('datasets.show');
 
 Route::get('/visualisations', function () {
   return Inertia::render('Visualisations');
-})->middleware(['auth', 'verified'])->name('visualisations');
+})->middleware(['auth', 'verified'])->name('visualisations.index');
 
 
 Route::middleware('auth')->group(function () {
