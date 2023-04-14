@@ -5,7 +5,6 @@ import {Head} from '@inertiajs/vue3';
 
 <template>
   <Head title="Dashboard"/>
-  <AuthenticatedLayout>
-    <h1 class="text-2xl font-bold tracking-tighter">Dashboard</h1>
+  <AuthenticatedLayout title="Dashboard" description="Head over to datasets or visualisations to get started.">
   </AuthenticatedLayout>
 </template>

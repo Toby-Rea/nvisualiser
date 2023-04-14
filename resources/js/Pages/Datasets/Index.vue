@@ -26,11 +26,7 @@
 
 <template>
   <Head title="Datasets"/>
-  <AuthenticatedLayout>
-    <section class="flex flex-col gap-4 mb-12">
-      <h1 class="text-3xl font-bold tracking-tighter">Datasets</h1>
-      <p class="font-medium text-neutral-500">View all the datasets available through NHANES.</p>
-    </section>
+  <AuthenticatedLayout title="Datasets" description="View all the datasets available through NHANES.">
 
     <div class="flex flex-col flex-none bg-white rounded-xl px-12 2xl:border 2xl:py-8">
       <input type="text" placeholder="Search..." v-model="search"

@@ -42,8 +42,7 @@ function plot() {
 
 <template>
   <Head title="Dataset"/>
-  <AuthenticatedLayout>
-    <h1 class="text-4xl font-bold tracking-tighter mb-8 px-12 2xl:p-0">Dataset</h1>
+  <AuthenticatedLayout title="Dataset" description="Overview of the dataset.">
 
     <div class="flex flex-col space-y-8" id="chart-options">
       <div>
