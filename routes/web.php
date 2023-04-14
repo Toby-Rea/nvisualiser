@@ -36,6 +36,9 @@ Route::get('/visualisations', function () {
   return Inertia::render('Visualisations/Index');
 })->middleware(['auth', 'verified'])->name('visualisations.index');
 
+Route::get('/visualisations/create', function () {
+  return Inertia::render('Visualisations/Create');
+})->middleware(['auth', 'verified'])->name('visualisations.create');
 
 Route::middleware('auth')->group(function () {
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
