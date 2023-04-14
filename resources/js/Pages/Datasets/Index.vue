@@ -27,11 +27,14 @@
 <template>
   <Head title="Datasets"/>
   <AuthenticatedLayout>
-    <h1 class="text-4xl font-bold tracking-tighter mb-8 px-12 2xl:p-0">Datasets</h1>
+    <section class="flex flex-col gap-4 mb-12">
+      <h1 class="text-3xl font-bold tracking-tighter">Datasets</h1>
+      <p class="font-medium text-neutral-500">View all the datasets available through NHANES.</p>
+    </section>
 
-    <div class="flex flex-col flex-none bg-white rounded-xl px-12 2xl:border-2 2xl:py-8">
+    <div class="flex flex-col flex-none bg-white rounded-xl px-12 2xl:border 2xl:py-8">
       <input type="text" placeholder="Search..." v-model="search"
-             class="w-full rounded-lg border-neutral-300 mb-12 px-6 py-3 hover:scale-[1.01] hover:border-neutral-400 focus:scale-[1.01] focus:ring-0 focus:border-neutral-600 transition-all">
+             class="w-full rounded-lg border-neutral-300 mb-12 px-6 py-3 hover:scale-[1.01] focus:scale-[1.01] focus:ring-0 focus:border-neutral-600 transition-all">
       <table class="table-fixed text-sm font-light">
         <thead class="border-b w-full">
         <tr class="text-left text-neutral-600 [&>*]:px-4 [&>*]:py-2">

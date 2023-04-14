@@ -34,9 +34,6 @@ function plot() {
         values: randomRows.map(row => row[header])
       }
     }),
-    line: {
-      color: 'blue'
-    }
   };
 
   Plotly.newPlot("chart", [chartData]);
