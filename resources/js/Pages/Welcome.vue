@@ -1,5 +1,6 @@
 <script setup>
 import {Link, Head} from '@inertiajs/vue3';
+import { Icon } from '@iconify/vue';
 
 defineProps({
   auth: Object,
@@ -30,12 +31,14 @@ defineProps({
           <Link href="/dashboard"
                 class="flex items-center gap-4 font-semibold max-w-md py-3 px-12 rounded-md text-center text-neutral-800 bg-neutral-200 hover:bg-neutral-300">
             Get back into it
+            <Icon icon="octicon:arrow-right-16" />
           </Link>
         </div>
         <div v-else>
           <Link href="/login"
                 class="flex items-center gap-4 font-semibold max-w-md py-3 px-12 rounded-md text-center text-neutral-800 bg-neutral-200 hover:bg-neutral-300">
             Get Started
+            <Icon icon="octicon:arrow-right-16" />
           </Link>
         </div>
       </div>

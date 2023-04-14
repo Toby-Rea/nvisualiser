@@ -34,8 +34,8 @@
 
     <div class="flex flex-col flex-none bg-white rounded-xl px-12 2xl:border 2xl:py-8">
       <input type="text" placeholder="Search..." v-model="search"
-             class="w-full rounded-lg border-neutral-300 mb-12 px-6 py-3 hover:scale-[1.01] focus:scale-[1.01] focus:ring-0 focus:border-neutral-600 transition-all">
-      <table class="table-fixed text-sm font-light">
+             class="block w-full rounded-lg border-neutral-300 px-6 py-3 hover:scale-[1.01] focus:scale-[1.01] focus:ring-0 focus:border-neutral-600 transition-all">
+      <table class="mt-12 table-fixed text-sm font-light">
         <thead class="border-b w-full">
         <tr class="text-left text-neutral-600 [&>*]:px-4 [&>*]:py-2">
           <th class="w-36">Years</th>
