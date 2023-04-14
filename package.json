@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "@revolist/vue3-datagrid": "^3.2.17",
-        "lodash": "^4.17.21"
+        "lodash": "^4.17.21",
+        "plotly.js-dist": "^2.20.0"
     }
 }

@@ -3,8 +3,7 @@
   import {Head} from '@inertiajs/vue3';
   import PrimaryButton from "@/Components/PrimaryButton.vue";
   import {ref} from "vue";
-
-  import "https://cdn.plot.ly/plotly-2.20.0.js"
+  import {newPlot} from "plotly.js-dist";
 
   const props = defineProps({
     headers: Object,
@@ -36,7 +35,7 @@
       }),
     };
 
-    Plotly.newPlot("chart", [chartData]);
+    newPlot("chart", [chartData]);
   }
 </script>
 
@@ -54,23 +53,5 @@
     </div>
 
     <div id="chart"/>
-
-    <!--    <table>-->
-    <!--      <thead>-->
-    <!--      <tr>-->
-    <!--        <th v-for="header in props.headers">-->
-    <!--          {{ header }}-->
-    <!--        </th>-->
-    <!--      </tr>-->
-    <!--      </thead>-->
-    <!--      <tbody>-->
-    <!--      <tr v-for="row in props.data">-->
-    <!--        <td v-for="cell in row">-->
-    <!--          {{ cell }}-->
-    <!--        </td>-->
-    <!--      </tr>-->
-    <!--      </tbody>-->
-    <!--    </table>-->
-
   </AuthenticatedLayout>
 </template>
