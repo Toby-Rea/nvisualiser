@@ -1,43 +1,43 @@
 <script setup>
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import {Head} from '@inertiajs/vue3';
-import PrimaryButton from "@/Components/PrimaryButton.vue";
-import {ref} from "vue";
+  import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+  import {Head} from '@inertiajs/vue3';
+  import PrimaryButton from "@/Components/PrimaryButton.vue";
+  import {ref} from "vue";
 
-import "https://cdn.plot.ly/plotly-2.20.0.js"
+  import "https://cdn.plot.ly/plotly-2.20.0.js"
 
-const props = defineProps({
-  headers: Object,
-  data: Object,
-});
+  const props = defineProps({
+    headers: Object,
+    data: Object,
+  });
 
-const numRecords = ref(props.data.length);
+  const numRecords = ref(props.data.length);
 
-function plot() {
-  // document.getElementById("chart-options").remove();
+  function plot() {
+    // document.getElementById("chart-options").remove();
 
-  // Remove SEQN from headers
-  const dimensions = props.headers.filter(header => header !== "SEQN");
+    // Remove SEQN from headers
+    const dimensions = props.headers.filter(header => header !== "SEQN");
 
-  // Randomly select records
-  const randomRows = props.data
-    .map((row, index) => ({index, row}))
-    .sort(() => Math.random() - 0.5)
-    .slice(0, numRecords.value)
-    .map(({row}) => row);
+    // Randomly select records
+    const randomRows = props.data
+      .map((row, index) => ({index, row}))
+      .sort(() => Math.random() - 0.5)
+      .slice(0, numRecords.value)
+      .map(({row}) => row);
 
-  const chartData = {
-    type: 'parcoords',
-    dimensions: dimensions.map(header => {
-      return {
-        label: header,
-        values: randomRows.map(row => row[header])
-      }
-    }),
-  };
+    const chartData = {
+      type: 'parcoords',
+      dimensions: dimensions.map(header => {
+        return {
+          label: header,
+          values: randomRows.map(row => row[header])
+        }
+      }),
+    };
 
-  Plotly.newPlot("chart", [chartData]);
-}
+    Plotly.newPlot("chart", [chartData]);
+  }
 </script>
 
 <template>

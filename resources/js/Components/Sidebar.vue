@@ -1,9 +1,9 @@
 <script setup>
-import {usePage, Link} from '@inertiajs/vue3'
-import {computed} from 'vue'
-import { Icon } from '@iconify/vue';
+  import {usePage, Link} from '@inertiajs/vue3'
+  import {computed} from 'vue'
+  import { Icon } from '@iconify/vue';
 
-const user = computed(() => usePage().props.auth.user)
+  const user = computed(() => usePage().props.auth.user)
 </script>
 
 <template>
