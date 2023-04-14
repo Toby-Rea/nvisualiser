@@ -33,7 +33,7 @@ Route::get('/datasets', [DatasetsController::class, 'index'])->middleware(['auth
 Route::get('/datasets/{dataset}', [DatasetsController::class, 'show'])->middleware(['auth', 'verified'])->name('datasets.show');
 
 Route::get('/visualisations', function () {
-  return Inertia::render('Visualisations');
+  return Inertia::render('Visualisations/Index');
 })->middleware(['auth', 'verified'])->name('visualisations.index');
 
 
