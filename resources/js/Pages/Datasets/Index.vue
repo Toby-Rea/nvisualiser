@@ -28,7 +28,7 @@
   <Head title="Datasets"/>
   <AuthenticatedLayout title="Datasets" description="View all the datasets available through NHANES.">
 
-    <div class="flex flex-col flex-none bg-white rounded-xl px-12 2xl:border 2xl:py-8">
+    <div class="flex flex-col flex-none">
       <input type="text" placeholder="Search..." v-model="search"
              class="block w-full rounded-lg border-neutral-300 px-6 py-3 hover:scale-[1.01] focus:scale-[1.01] focus:ring-0 focus:border-neutral-600 transition-all">
       <table class="mt-12 table-fixed text-sm font-light">
