@@ -33,37 +33,8 @@ class DatasetsController extends Controller
 
   public function getDataset(string $dataset) : JsonResponse
   {
-    $available_datasets = [
-      "P_CBC",
-      "CBC_J",
-      "CBC_I",
-      "CBC_H",
-      "CBC_G",
-      "CBC_F",
-      "CBC_E",
-      "CBC_D",
-      "HIV_E",
-      "HIV_G",
-      "HIV_H",
-      "HIV_F",
-      "HIV_J",
-      "HIV_D",
-      "HIV_I",
-      "L03_C",
-      "L03_B",
-      "LAB03",
-      "MCQ_E",
-      "MCQ",
-      "MCQ_D",
-      "MCQ_C",
-      "MCQ_B",
-      "MCQ_F",
-      "MCQ_G",
-      "MCQ_H",
-      "MCQ_I",
-      "MCQ_J",
-      "P_MCQ",
-    ];
+    // get the available datasets
+    $available_datasets = DB::table('available_datasets')->pluck('name')->toArray();
 
     // Ensure the dataset is available and exists in the database
     if (!in_array($dataset, $available_datasets) || !Schema::hasTable($dataset)) {
@@ -78,6 +49,24 @@ class DatasetsController extends Controller
     return response()->json([
       'headers' => $headers,
       'rows' => $rows
+    ]);
+  }
+
+  public function getAvailableDatasets(): JsonResponse
+  {
+    // get the array of available datasets from the available_datasets table
+    $available_datasets = DB::table('available_datasets')->pluck("name")->toArray();
+
+    // Ensure there are available datasets before responding
+    if (empty($available_datasets)) {
+      return response()->json([
+        'message' => 'No datasets found'
+      ], 404);
+    }
+
+    // Otherwise return the available datasets
+    return response()->json([
+      "datasets" => $available_datasets
     ]);
   }
 }

@@ -19,4 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
   return $request->user();
 });
 
-Route::get('/datasets/{dataset}', [DatasetsController::class, 'getDataset'])->name('datasets.show');
+Route::get('/available_datasets', [DatasetsController::class, 'getAvailableDatasets']);
+Route::get('/datasets/{dataset}', [DatasetsController::class, 'getDataset']);
