@@ -4,6 +4,7 @@
   import {newPlot} from "plotly.js-dist";
   import PrimaryButton from "@/Components/PrimaryButton.vue";
   import {Head} from "@inertiajs/vue3";
+  import {debounce} from "lodash";
 
   //create an array which holds the available datasets
   const availableDatasets = ref();
@@ -19,7 +20,7 @@
   // create a ref to hold the selected datasets
   const selectedDataset = ref();
 
-  const numRecords = ref(0);
+  const totalRecords = ref(0);
   const rows = ref([]);
   const headers = ref([]);
   const chartType = ref();
@@ -31,7 +32,7 @@
       .then((response) => {
         rows.value = response.data.rows;
         headers.value = response.data.headers;
-        numRecords.value = response.data.rows.length;
+        totalRecords.value = response.data.rows.length;
       })
       .catch((error) => {
         console.log(error);
@@ -39,6 +40,21 @@
   });
 
   const selectedHeaders = ref([]);
+  const selectedRows = ref([]);
+  const rowVisualisationCount = ref(totalRecords.value);
+
+  // Randomly select rows to display when not displaying all
+  watch(rowVisualisationCount, debounce((value) => {
+    if (value < totalRecords.value) {
+      selectedRows.value = rows.value
+        .map((row, index) => ({index, row}))
+        .sort(() => Math.random() - 0.5)
+        .slice(0, value)
+        .map(({row}) => row);
+    } else {
+      selectedRows.value = rows.value;
+    }
+  }), 300);
 
   function plot() {
     // switch chart type and call respective function
@@ -58,7 +74,7 @@
       dimensions: selectedHeaders.value.map(header => {
         return {
           label: header,
-          values: rows.value.map(row => row[header])
+          values: selectedRows.value.map(row => row[header])
         }
       }),
     };
@@ -69,8 +85,8 @@
   function plot_scatter() {
     const chartData = {
       type: chartType.value,
-      x: rows.value.map(row => row[selectedHeaders.value[0]]),
-      y: rows.value.map(row => row[selectedHeaders.value[1]]),
+      x: selectedRows.value.map(row => row[selectedHeaders.value[0]]),
+      y: selectedRows.value.map(row => row[selectedHeaders.value[1]]),
       mode: 'markers',
     }
     const layout = {
@@ -111,15 +127,22 @@
       </select>
     </div>
 
-    <div v-if="chartType" class="flex flex-col">
+    <div v-if="chartType" class="flex flex-col gap-4">
       <h1 class="text-xl font-bold tracking-tight my-4">Set the Chart Options</h1>
-      <label for="num-records">Select the headers to plot</label>
+      <h2 class="tracking-tight font-semibold">Select the Headers</h2>
       <select v-model="selectedHeaders" multiple>
         <option v-for="header in headers" :value="header">{{ header }}</option>
       </select>
+
+      <h2 class="tracking-tight font-semibold">Select number of rows to visualise (randomised)</h2>
+      <div class="flex gap-8">
+        <input type="range" min="0" :max="totalRecords" v-model="rowVisualisationCount" class="w-11/12">
+        <input type="number" min="0" :max="totalRecords" v-model="rowVisualisationCount" class="w-1/12">
+      </div>
+
     </div>
 
-    <PrimaryButton v-if="chartType" @click="plot()">Plot</PrimaryButton>
+    <PrimaryButton v-if="chartType" @click="plot()" class="my-4">Plot</PrimaryButton>
 
     <div id="chart"/>
 
