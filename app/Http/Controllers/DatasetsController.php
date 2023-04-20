@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dataset;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Schema;
@@ -30,7 +31,7 @@ class DatasetsController extends Controller
     ]);
   }
 
-  public function show(string $dataset)
+  public function getDataset(string $dataset) : JsonResponse
   {
     $available_datasets = [
       "P_CBC",
@@ -64,17 +65,16 @@ class DatasetsController extends Controller
       "P_MCQ",
     ];
 
-    if (!in_array($dataset, $available_datasets)) {
-      abort(404);
-    }
-    if (!Schema::hasTable($dataset)) {
-      abort(404);
+    // Ensure the dataset is available and exists in the database
+    if (!in_array($dataset, $available_datasets) || !Schema::hasTable($dataset)) {
+      return response()->json([
+        'message' => 'Dataset not found'
+      ], 404);
     }
 
+    // Return the headers and rows
     $headers = Schema::getColumnListing($dataset);
     $rows = DB::table($dataset)->get();
-
-    // return the headers and rows as json object
     return response()->json([
       'headers' => $headers,
       'rows' => $rows
