@@ -30,7 +30,7 @@ class DatasetsController extends Controller
     ]);
   }
 
-  public function show(string $dataset): Response
+  public function show(string $dataset)
   {
     $available_datasets = [
       "P_CBC",
@@ -72,11 +72,12 @@ class DatasetsController extends Controller
     }
 
     $headers = Schema::getColumnListing($dataset);
-    $data = DB::table($dataset)->get();
+    $rows = DB::table($dataset)->get();
 
-    return Inertia::render('Datasets/Show', [
+    // return the headers and rows as json object
+    return response()->json([
       'headers' => $headers,
-      'data' => $data
+      'rows' => $rows
     ]);
   }
 }

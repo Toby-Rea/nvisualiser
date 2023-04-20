@@ -1,7 +1,7 @@
 <script setup>
   import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-  import {Head} from '@inertiajs/vue3';
   import PrimaryButton from "@/Components/PrimaryButton.vue";
+  import {Head} from '@inertiajs/vue3';
   import {ref} from "vue";
   import {newPlot} from "plotly.js-dist";
 
