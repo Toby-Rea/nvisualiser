@@ -7,9 +7,9 @@
 </script>
 
 <template>
-  <div class="flex flex-col bg-neutral-50 justify-between sticky top-0 h-screen border-r border-neutral-100 p-8 shadow-sm">
+  <div class="hidden md:block bg-neutral-50 sticky top-0 h-screen border-r border-neutral-100 p-8 shadow-sm max-w-[288px]">
     <div class="flex flex-col gap-8">
-      <h1 class="font-extrabold text-2xl tracking-tight">NVisualiser</h1>
+      <img src="/nvisualiser.svg" alt="NVisualiser" class="w-3/4 mx-auto">
       <nav class="flex flex-col gap-4 tracking-tight font-semibold text-slate-500">
         <Link :href="route('dashboard')" class="flex items-center gap-2 p-2.5 rounded-md hover:bg-slate-100 hover:scale-[1.02] transition-all" :class="{'shadow-sm bg-slate-200 text-slate-600': $page.url.startsWith('/dashboard')}">
           <Icon icon="octicon:home-16" />
@@ -26,9 +26,9 @@
       </nav>
     </div>
 
-    <Link :href="route('profile.edit')" class="shadow-sm p-4 bg-white border text-sm rounded-md hover:scale-[1.03] transition-all">
+    <Link :href="route('profile.edit')" class="absolute bottom-0 left-0 right-0 flex flex-col justify-center rounded-md bg-white border p-4 m-6 hover:opacity-40 transition-all">
       <p class="font-semibold">{{ user.name }}</p>
-      <p class="text-xs text-neutral-500">{{ user.email }}</p>
+      <p class="text-xs text-neutral-500 truncate">{{ user.email }}</p>
     </Link>
   </div>
 </template>
