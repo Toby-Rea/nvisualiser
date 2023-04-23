@@ -42,9 +42,26 @@ class AvailableDatasetSeeder extends Seeder
       "MCQ_I",
       "MCQ_J",
       "P_MCQ",
+      "P_SMQ",
+      "SMQ_J",
+      "SMQ_I",
+      "SMQ_H",
+      "SMQ_G",
+      "SMQ_F",
+      "SMQ_E",
+      "SMQ_D",
+      "SMQ_C",
+      "SMQ_B",
+      "P_SMQ",
+      "SMQ",
     ];
 
+    // Populate the database with the curated datasets if they don't already exist
     foreach ($available_datasets as $dataset) {
+      if (DB::table('available_datasets')->where('name', $dataset)->exists()) {
+        continue;
+      }
+
       DB::table('available_datasets')->insert([
         'name' => $dataset,
         'created_at' => now(),

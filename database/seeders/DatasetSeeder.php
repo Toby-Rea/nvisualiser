@@ -84,12 +84,25 @@ class DatasetSeeder extends Seeder
       "questionnaire/MCQ_I.csv",
       "questionnaire/MCQ_J.csv",
       "questionnaire/P_MCQ.csv",
+      "questionnaire/P_SMQ.csv",
+      "questionnaire/SMQ_J.csv",
+      "questionnaire/SMQ_I.csv",
+      "questionnaire/SMQ_H.csv",
+      "questionnaire/SMQ_G.csv",
+      "questionnaire/SMQ_F.csv",
+      "questionnaire/SMQ_E.csv",
+      "questionnaire/SMQ_D.csv",
+      "questionnaire/SMQ_C.csv",
+      "questionnaire/SMQ_B.csv",
+      "questionnaire/P_SMQ.csv",
+      "questionnaire/SMQ.csv"
     ];
 
     foreach ($datasets as $dataset) {
-      // Check if the SQL table already exists and fresh is false
       $table_name = substr($dataset, strrpos($dataset, '/') + 1);
       $table_name = substr($table_name, 0, strrpos($table_name, '.'));
+
+      // Check if the SQL table already exists and fresh is false
       if (Schema::hasTable($table_name) && !$fresh) {
         echo("Table $table_name already exists" . PHP_EOL);
         continue;
@@ -121,13 +134,12 @@ class DatasetSeeder extends Seeder
       // get number of headers
       $headers_count = count($header);
 
-      // Create the table
       Schema::create($table_name, function (Blueprint $table) use ($header) {
         $seqn = array_shift($header);
         $table->float($seqn)->primary();
 
         foreach ($header as $column) {
-          $table->string($column, 25);
+          $table->string($column, 50);
         }
       });
 
