@@ -130,9 +130,14 @@
     <div v-if="chartType" class="flex flex-col gap-4">
       <h1 class="text-xl font-bold tracking-tight my-4">Set the Chart Options</h1>
       <h2 class="tracking-tight font-semibold">Select the Headers</h2>
-      <select v-model="selectedHeaders" multiple>
-        <option v-for="header in headers" :value="header">{{ header }}</option>
-      </select>
+      <div class="grid grid-cols-8 gap-4">
+        <template v-for="header in headers">
+          <label :for="header" class="flex items-center">
+            <input type="checkbox" :id="header" v-model="selectedHeaders" :value="header" class="mr-2">
+            <span>{{ header }}</span>
+          </label>
+        </template>
+      </div>
 
       <h2 class="tracking-tight font-semibold">Select number of rows to visualise (randomised)</h2>
       <div class="flex gap-8">
