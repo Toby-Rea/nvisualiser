@@ -26,7 +26,7 @@
       </nav>
     </div>
 
-    <Link :href="route('profile.edit')" class="absolute bottom-0 left-0 right-0 flex flex-col justify-center rounded-md bg-white border p-4 m-6 hover:opacity-40 transition-all">
+    <Link :href="route('profile.edit')" class="absolute bottom-0 left-0 right-0 flex flex-col justify-center rounded-md bg-white border p-4 m-6 hover:scale-[1.02] hover:bg-slate-50 transition-all">
       <p class="font-semibold">{{ user.name }}</p>
       <p class="text-xs text-neutral-500 truncate">{{ user.email }}</p>
     </Link>
