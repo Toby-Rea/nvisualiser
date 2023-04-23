@@ -19,11 +19,13 @@
 
   // create a ref to hold the selected datasets
   const selectedDataset = ref();
-
   const totalRecords = ref(0);
   const rows = ref([]);
   const headers = ref([]);
   const chartType = ref();
+  const selectedHeaders = ref([]);
+  const selectedRows = ref([]);
+  const rowVisualisationCount = ref(totalRecords.value);
 
   // watch the value of selectedDataset and if it changes, pull the data in
   watch(selectedDataset, (value) => {
@@ -37,11 +39,11 @@
       .catch((error) => {
         console.log(error);
       });
-  });
 
-  const selectedHeaders = ref([]);
-  const selectedRows = ref([]);
-  const rowVisualisationCount = ref(totalRecords.value);
+    selectedHeaders.value = [];
+    selectedRows.value = [];
+    rowVisualisationCount.value = 0;
+  });
 
   // Randomly select rows to display when not displaying all
   watch(rowVisualisationCount, debounce((value) => {
