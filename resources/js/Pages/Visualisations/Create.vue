@@ -67,6 +67,9 @@
       case "scatter":
         plot_scatter();
         break;
+      case "box":
+        plot_boxplot();
+        break;
     }
   }
 
@@ -106,6 +109,20 @@
 
     newPlot("chart", [chartData], layout);
   }
+
+  function plot_boxplot() {
+    let data = [];
+    selectedHeaders.value.forEach(header => {
+      const trace = {
+        x: selectedRows.value.map(row => row[header]),
+        type: 'box',
+        name: header,
+      };
+      data.push(trace);
+    });
+
+    newPlot("chart", data);
+  }
 </script>
 
 <template>
@@ -126,6 +143,7 @@
       <select v-model="chartType">
         <option value="parcoords">Parallel Coordinates</option>
         <option value="scatter">Scatter Plot</option>
+        <option value="box">Box Plot</option>
       </select>
     </div>
 
