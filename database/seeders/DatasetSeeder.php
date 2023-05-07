@@ -95,7 +95,8 @@ class DatasetSeeder extends Seeder
       "questionnaire/SMQ_C.csv",
       "questionnaire/SMQ_B.csv",
       "questionnaire/P_SMQ.csv",
-      "questionnaire/SMQ.csv"
+      "questionnaire/SMQ.csv",
+      "custom/SMQ_CBC.csv"
     ];
 
     foreach ($datasets as $dataset) {

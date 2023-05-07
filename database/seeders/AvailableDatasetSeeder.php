@@ -54,6 +54,7 @@ class AvailableDatasetSeeder extends Seeder
       "SMQ_B",
       "P_SMQ",
       "SMQ",
+      "SMQ_CBC",
     ];
 
     // Populate the database with the curated datasets if they don't already exist
