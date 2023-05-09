@@ -111,17 +111,29 @@
   }
 
   function plot_boxplot() {
-    let data = [];
-    selectedHeaders.value.forEach(header => {
-      const trace = {
-        x: selectedRows.value.map(row => row[header]),
-        type: 'box',
-        name: header,
-      };
-      data.push(trace);
-    });
+    let trace = {
+      x: selectedRows.value.map(row => row[selectedHeaders.value[0]]),
+      y: selectedRows.value.map(row => row[selectedHeaders.value[1]]),
+      type: 'box',
+      orientation: 'h'
+    };
 
-    newPlot("chart", data);
+    let layout = {
+      xaxis: {
+        title: {
+          text: selectedHeaders.value[0],
+        },
+      },
+      yaxis: {
+        title: {
+          text: selectedHeaders.value[1],
+        }
+      }
+    };
+
+    let data = [trace];
+
+    newPlot("chart", data, layout);
   }
 </script>
 
