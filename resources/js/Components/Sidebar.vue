@@ -9,7 +9,6 @@
 <template>
   <div class="hidden md:block bg-neutral-50 sticky top-0 h-screen border-r border-neutral-100 p-8 shadow-sm max-w-[288px]">
     <div class="flex flex-col gap-8">
-      <img src="/nvisualiser.svg" alt="NVisualiser" class="w-3/4 mx-auto">
       <nav class="flex flex-col gap-4 tracking-tight font-semibold text-slate-500">
         <Link :href="route('dashboard')" class="flex items-center gap-2 p-2.5 rounded-md hover:bg-slate-100 hover:scale-[1.02] transition-all" :class="{'shadow-sm bg-slate-200 text-slate-600': $page.url.startsWith('/dashboard')}">
           <Icon icon="octicon:home-16" />
