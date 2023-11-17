@@ -2,6 +2,12 @@
 
 NVisualiser is a web application that provides tools for interacting with and visualising NHANES data
 
+## Requirements
+
+- PHP: https://www.php.net/
+- Composer: https://getcomposer.org/
+- Docker: https://www.docker.com/
+
 ## Getting Started
 
 - You will need to copy `.env.example` to `.env` and make suitable modifications
