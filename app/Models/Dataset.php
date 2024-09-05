@@ -12,9 +12,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $data_url
  * @property int $start_year
  * @property int $end_year
- * @property boolean $downloaded
+ * @property bool $downloaded
  */
 class Dataset extends Model
 {
-  public $timestamps = false;
+    public $timestamps = false;
 }
